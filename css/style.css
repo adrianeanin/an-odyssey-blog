@@ -1,0 +1,50 @@
+@import url("normalize.css");
+
+html {
+  color: #444;
+  font-family: Cambria, Cochin, Georgia, "Times New Roman", Times, serif;
+  font-size: 20px;
+}
+
+img {
+  max-width: 100%;
+}
+
+.header {
+  grid-template-columns: 1fr 2fr 1fr;
+  display: grid;
+  grid-column: 1 / -1;
+  margin-top: 1.5em;
+}
+
+.logo {
+  justify-self: start;
+  display: grid;
+  place-items: center;
+}
+
+.logo img {
+  width: 20%;
+}
+
+.title {
+  justify-self: center;
+}
+
+.menu {
+  align-self: center;
+}
+
+.menu > ul {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(100px, 1fr));
+}
+
+ul {
+  list-style: none;
+}
+
+.menu ul,
+.menu li {
+  font-size: 16px;
+}
