@@ -1,0 +1,152 @@
+@import url("normalize.css");
+
+html {
+  color: #444;
+  font-family: Cambria, Cochin, Georgia, "Times New Roman", Times, serif;
+  font-size: 20px;
+}
+
+:root {
+  --teal: #52dee5;
+}
+
+img {
+  max-width: 100%;
+}
+
+.header {
+  grid-template-columns: 1fr 2fr 1fr;
+  display: grid;
+  grid-column: 1 / -1;
+  margin-top: 1.5em;
+  align-items: center;
+}
+
+li > a {
+  text-decoration: none;
+  color: #000;
+  border-bottom: 2px solid transparent;
+}
+
+li > a:hover {
+  border-bottom: 2px solid var(--teal);
+}
+
+.logo {
+  justify-self: start;
+  display: grid;
+  place-items: center;
+}
+
+.logo img {
+  width: 20%;
+}
+
+.title {
+  justify-self: center;
+}
+
+.menu {
+  align-self: center;
+}
+
+.menu > ul {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(100px, 1fr));
+}
+
+ul {
+  list-style: none;
+}
+
+.menu ul,
+.menu li {
+  font-size: 16px;
+}
+
+p {
+  line-height: 1.8;
+}
+
+a {
+  color: black;
+  text-decoration: underline wavy var(--teal);
+}
+
+h1,
+h2 {
+  font-size: 40px;
+  font-style: italic;
+  font-weight: 100;
+  margin: 0;
+}
+
+.title__page {
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 100;
+  margin: 0;
+}
+
+#post__title {
+  text-align: center;
+  grid-column: 1/-1;
+  font-size: 50px;
+  font-style: normal;
+}
+
+.post {
+  display: grid;
+  max-width: 1000px;
+  margin: 50px auto;
+  gap: 20px;
+  grid-template-columns: 3fr 12fr 3fr;
+}
+
+.post > * {
+  grid-column: 2 / -2;
+}
+
+.post > figure {
+  margin: 0;
+  grid-column: 1 / -1;
+}
+
+.imgdiv {
+  height: 300px;
+}
+
+.imgdiv img {
+  height: 100%; /* set the height of the image to 100% of the container */
+  /* set the width to auto to maintain aspect ratio */
+  object-fit: fill; /* specify how the content of the image should be resized */
+  width: 100%;
+}
+figcaption {
+  font-size: 16px;
+  text-align: center;
+}
+
+.post > blockquote {
+  grid-column: 1/-1;
+  font-size: 30px;
+  font-style: italic;
+  text-align: center;
+  margin: 0;
+}
+
+.tip {
+  padding: 10px;
+}
+
+.tip-left {
+  grid-column: 1 / span 1;
+  text-align: right;
+  border-right: 2px solid var(--teal);
+}
+
+.tip-right {
+  grid-column: span 1 /-1;
+  text-align: left;
+  border-left: 2px solid var(--teal);
+}
