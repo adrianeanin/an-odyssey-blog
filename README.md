@@ -2,8 +2,6 @@
 
 This personal blog was created using HTML and CSS, and it serves as a platform to share my personal experiences, ideas, articles and thoughts with the world. The blog is designed with simplicity and user-friendliness in mind, allowing readers to navigate and interact with the content easily.
 
-[Live link:] (https://adriananin.github.io/anin-blog-odyssey/)
-
 ## Features:
 
 - Clean and minimalist design
