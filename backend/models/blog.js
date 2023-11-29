@@ -22,6 +22,12 @@ const blogSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "User",
     },
+    comments: [
+      {
+        name: { type: String, required: true },
+        text: { type: String, required: true },
+      },
+    ],
   },
   { timestamps: true }
 );

@@ -8,75 +8,88 @@ const {
   updatePost,
   deletePost,
 } = require("../controllers/blogController");
-const jwt = require("jsonwebtoken");
-const config = require("../utils/config");
-const User = require("../models/user");
 
-const tokenExtractor = (req, res, next) => {
-  const authorization = req.get("authorization");
+// const jwt = require("jsonwebtoken");
+// const config = require("../utils/config");
+// const User = require("../models/user");
 
-  if (authorization && authorization.startsWith("Bearer ")) {
-    const token = authorization.replace("Bearer ", "");
-    req.token = token;
-  }
+// const tokenExtractor = (req, res, next) => {
+//   const authorization = req.get("authorization");
 
-  next();
-};
+//   if (authorization && authorization.startsWith("Bearer ")) {
+//     const token = authorization.replace("Bearer ", "");
+//     req.token = token;
+//   }
 
-const userExtractor = async (req, res, next) => {
-  const token = req.token;
+//   next();
+// };
 
-  if (token) {
-    const decodedToken = jwt.verify(token, config.SECRET);
+// const userExtractor = async (req, res, next) => {
+//   const token = req.token;
 
-    if (decodedToken.id) {
-      const user = await User.findById(decodedToken.id);
-      req.user = user;
-    }
-  }
+//   if (token) {
+//     const decodedToken = jwt.verify(token, config.SECRET);
 
-  next();
-};
+//     if (decodedToken.id) {
+//       const user = await User.findById(decodedToken.id);
+//       req.user = user;
+//     }
+//   }
 
-const authenticateJWT = (req, res, next) => {
-  const token = req.token;
+//   next();
+// };
 
-  const decodedToken = jwt.verify(token, config.SECRET);
-  if (!decodedToken || !decodedToken.id) {
-    return res.status(401).json({ error: "Token invalid" });
-  }
+// const authenticateJWT = (req, res, next) => {
+//   const token = req.token;
 
-  next();
-};
+//   const decodedToken = jwt.verify(token, config.SECRET);
+//   if (!decodedToken || !decodedToken.id) {
+//     return res.status(401).json({ error: "Token invalid" });
+//   }
 
-router.get("/posts", tokenExtractor, userExtractor, authenticateJWT, getPosts);
+//   next();
+// };
+
+// router.get("/posts", tokenExtractor, userExtractor, authenticateJWT, getPosts);
+
+// router.get("/published-posts", getPublishedPosts);
+
+// router.get("/posts/:id", getPost);
+
+// router.post(
+//   "/create-post",
+//   tokenExtractor,
+//   userExtractor,
+//   authenticateJWT,
+//   createPost
+// );
+
+// router.put(
+//   "/posts/:id",
+//   tokenExtractor,
+//   userExtractor,
+//   authenticateJWT,
+//   updatePost
+// );
+
+// router.delete(
+//   "/posts/:id",
+//   tokenExtractor,
+//   userExtractor,
+//   authenticateJWT,
+//   deletePost
+// );
+
+router.get("/posts", getPosts);
 
 router.get("/published-posts", getPublishedPosts);
 
 router.get("/posts/:id", getPost);
 
-router.post(
-  "/create-post",
-  tokenExtractor,
-  userExtractor,
-  authenticateJWT,
-  createPost
-);
+router.post("/create-post", createPost);
 
-router.put(
-  "/posts/:id",
-  tokenExtractor,
-  userExtractor,
-  authenticateJWT,
-  updatePost
-);
+router.put("/posts/:id", updatePost);
 
-router.delete(
-  "/posts/:id",
-  tokenExtractor,
-  userExtractor,
-  authenticateJWT,
-  deletePost
-);
+router.delete("/posts/:id", deletePost);
 
 module.exports = router;
