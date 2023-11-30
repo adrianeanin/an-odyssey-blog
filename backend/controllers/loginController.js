@@ -5,11 +5,10 @@ const { comparePasswords } = require("../utils/encryption");
 const config = require("../utils/config");
 
 const loginUser = [
-  body("email", "Name cannot be empty").trim().notEmpty().escape(),
   body("email", "Email cannot be empty").trim().notEmpty().escape(),
   body("password", "Password cannot be empty").trim().notEmpty().escape(),
   async (req, res) => {
-    const { name, email, password } = req.body;
+    const { email, password } = req.body;
 
     const errors = validationResult(req);
 
@@ -29,7 +28,6 @@ const loginUser = [
     }
 
     const userForToken = {
-      name: user.name,
       email: user.email,
       id: user._id,
     };
@@ -38,7 +36,7 @@ const loginUser = [
       expiresIn: "2h",
     });
 
-    res.status(200).send({ name, email, token });
+    res.status(200).send({ email, token });
   },
 ];
 

@@ -88,12 +88,22 @@ const updatePost = [
 
 const deletePost = async (req, res) => {
   const { id } = req.params;
+  const user = req.user;
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(404).json({ error: "No such post" });
   }
 
-  await Blog.findByIdAndDelete(id);
+  const blog = await Blog.findById(id);
+
+  user.blogs = user.blogs.filter((blog) => blog._id.toString() !== id);
+
+  if (!blog) {
+    return res.status(404).json({ error: "No such post" });
+  }
+
+  blog.deleteOne();
+  await user.save();
 
   res.status(204).end();
 };

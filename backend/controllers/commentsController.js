@@ -56,13 +56,13 @@ const deleteComment = async (req, res) => {
   const { id, commentId } = req.params;
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(404).json({ error: "No such post" });
+    return res.status(404).json({ error: "No such comment" });
   }
 
   const blog = await Blog.findById(id);
 
   if (!blog) {
-    return res.status(404).json({ error: "No such post" });
+    return res.status(404).json({ error: "No such comment" });
   }
 
   blog.comments = blog.comments.filter(

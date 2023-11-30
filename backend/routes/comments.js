@@ -5,23 +5,18 @@ const {
   addComment,
   deleteComment,
 } = require("../controllers/commentsController");
-
-// router.get("/posts/:id/comments", getComments);
-
-// router.post("/posts/:id/comments", addComment);
-
-// router.delete(
-//   "/posts/:id/comments/:commentId",
-//   tokenExtractor,
-//   userExtractor,
-//   authenticateJWT,
-//   deleteComment
-// );
+const middleware = require("../utils/middleware");
 
 router.get("/posts/:id/comments", getComments);
 
 router.post("/posts/:id/comments", addComment);
 
-router.delete("/posts/:id/comments/:commentId", deleteComment);
+router.delete(
+  "/posts/:id/comments/:commentId",
+  middleware.tokenExtractor,
+  middleware.userExtractor,
+  middleware.authenticateJWT,
+  deleteComment
+);
 
 module.exports = router;
