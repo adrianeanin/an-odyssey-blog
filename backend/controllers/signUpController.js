@@ -3,7 +3,7 @@ const { body, validationResult } = require("express-validator");
 const { hashPassword } = require("../utils/encryption");
 
 const signupUser = [
-  body("name").trim().notEmpty().escape(),
+  body("name").trim().notEmpty().withMessage("Name cannot be empty").escape(),
   body("email")
     .trim()
     .notEmpty()
@@ -34,6 +34,15 @@ const signupUser = [
     if (!errors.isEmpty()) {
       res.status(400).json({ errors: errors.array() });
       return;
+    }
+
+    // To allow only the admin to signup
+    const existingUsers = await User.find();
+
+    if (existingUsers.length > 0) {
+      return res
+        .status(403)
+        .json({ error: "Signup not allowed. Admin user already exists." });
     }
 
     const hash = await hashPassword(password);
