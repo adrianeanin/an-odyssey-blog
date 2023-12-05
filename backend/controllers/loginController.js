@@ -18,6 +18,7 @@ const loginUser = [
     }
 
     const user = await User.findOne({ email });
+    const name = user.name;
     const passwordCorrect =
       user === null ? false : await comparePasswords(password, user.password);
 
@@ -36,7 +37,7 @@ const loginUser = [
       expiresIn: "2h",
     });
 
-    res.status(200).send({ email, token });
+    res.status(200).send({ name, email, token });
   },
 ];
 
