@@ -61,29 +61,17 @@ const createPost = [
   },
 ];
 
-const updatePost = [
-  body("title").trim(),
-  body("subTitle").trim(),
-  body("body").trim(),
-  async (req, res) => {
-    const errors = validationResult(req);
+const updatePost = async (req, res) => {
+  const { id } = req.params;
 
-    if (!errors.isEmpty()) {
-      res.status(400).json({ errors: errors.array() });
-      return;
-    }
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).json({ error: "No such post" });
+  }
 
-    const { id } = req.params;
+  const updatedPost = await Blog.findByIdAndUpdate(id, { ...req.body });
 
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-      return res.status(404).json({ error: "No such post" });
-    }
-
-    const updatedPost = await Blog.findByIdAndUpdate(id, { ...req.body });
-
-    res.status(201).json(updatedPost);
-  },
-];
+  res.status(201).json(updatedPost);
+};
 
 const updatePublished = async (req, res) => {
   const { id } = req.params;
