@@ -28,7 +28,7 @@ const getPost = async (req, res) => {
 
 const createPost = [
   body("title").trim().notEmpty().withMessage("Title is required"),
-  body("subTitle").trim().notEmpty().withMessage("Snippet is required"),
+  body("subTitle").trim().notEmpty().withMessage("Subtitle is required"),
   body("body").trim().notEmpty().withMessage("Body is required"),
   body("tags").trim(),
   async (req, res) => {
@@ -62,10 +62,9 @@ const createPost = [
 ];
 
 const updatePost = [
-  body("title").trim().notEmpty().withMessage("Title is required"),
-  body("subTitle").trim().notEmpty().withMessage("Snippet is required"),
-  body("body").trim().notEmpty().withMessage("Body is required"),
-  body("tags").trim(),
+  body("title").trim(),
+  body("subTitle").trim(),
+  body("body").trim(),
   async (req, res) => {
     const errors = validationResult(req);
 
