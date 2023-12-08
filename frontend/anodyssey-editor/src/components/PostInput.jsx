@@ -2,7 +2,7 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import blogService from "../services/blog";
 
-const PostInput = ({ handleClick }) => {
+const PostInput = ({ handleClick, toUpdate }) => {
   const [formData, setFormData] = useState({
     title: "",
     subTitle: "",
@@ -12,26 +12,38 @@ const PostInput = ({ handleClick }) => {
     tags: [],
   });
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      await blogService.create(formData);
+  const { handleSubmit, handleEdit } = handleClick;
+  const { idToUpdate, currentEditTitle } = toUpdate;
 
-      setFormData({
-        title: "",
-        subTitle: "",
-        body: "",
-        quote: "",
-        isPublished: false,
-        tags: [],
-      });
-    } catch (error) {
-      console.error("Error submitting post:", error);
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+
+    if (idToUpdate) {
+      const nonEmptyFields = Object.keys(formData).reduce((acc, key) => {
+        if (formData[key] !== "") {
+          acc[key] = formData[key];
+        }
+        return acc;
+      }, {});
+
+      handleEdit(nonEmptyFields);
+    } else {
+      await blogService.create(formData);
     }
+
+    setFormData({
+      title: "",
+      subTitle: "",
+      body: "",
+      quote: "",
+      isPublished: false,
+      tags: [],
+    });
   };
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
+
     setFormData((prevData) => ({
       ...prevData,
       [name]: type === "checkbox" ? checked : value,
@@ -40,9 +52,11 @@ const PostInput = ({ handleClick }) => {
 
   return (
     <>
-      <h1>Create Post</h1>
+      <h1>{idToUpdate ? "Edit Post" : "Create Post"}</h1>
 
-      <form onSubmit={handleSubmit}>
+      <h3>{idToUpdate ? `Currently updating ${currentEditTitle}` : ""}</h3>
+
+      <form onSubmit={handleFormSubmit}>
         <label>
           Title:
           <input
@@ -107,8 +121,8 @@ const PostInput = ({ handleClick }) => {
           />
         </label>
 
-        <button type="submit" onClick={handleClick}>
-          Create Post
+        <button type="submit" onClick={handleSubmit}>
+          {idToUpdate ? "Edit Post" : "Create Post"}
         </button>
       </form>
     </>
@@ -116,7 +130,8 @@ const PostInput = ({ handleClick }) => {
 };
 
 PostInput.propTypes = {
-  handleClick: PropTypes.func.isRequired,
+  handleClick: PropTypes.object.isRequired,
+  toUpdate: PropTypes.object,
 };
 
 export default PostInput;

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import axios from "axios";
 import blogService from "../services/blog";
 
-const Form = ({ title, onLoginSuccess }) => {
+const Form = ({ title, onLoginSuccess, setActiveForm }) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -91,7 +91,8 @@ const Form = ({ title, onLoginSuccess }) => {
 
         {title === "Login" && (
           <div>
-            Don’t have an account yet? <a href="#">Sign up</a>
+            Don’t have an account yet?
+            <button onClick={() => setActiveForm("Signup")}>Sign up</button>
           </div>
         )}
       </form>
@@ -102,6 +103,7 @@ const Form = ({ title, onLoginSuccess }) => {
 Form.propTypes = {
   title: PropTypes.string.isRequired,
   onLoginSuccess: PropTypes.func,
+  setActiveForm: PropTypes.func,
 };
 
 export default Form;
