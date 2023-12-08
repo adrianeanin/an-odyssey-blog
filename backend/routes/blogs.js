@@ -6,6 +6,7 @@ const {
   getPost,
   createPost,
   updatePost,
+  updatePublished,
   deletePost,
 } = require("../controllers/blogController");
 const middleware = require("../utils/middleware");
@@ -36,6 +37,14 @@ router.put(
   middleware.userExtractor,
   middleware.authenticateJWT,
   updatePost
+);
+
+router.put(
+  "/posts/:id/toggle-publish",
+  middleware.tokenExtractor,
+  middleware.userExtractor,
+  middleware.authenticateJWT,
+  updatePublished
 );
 
 router.delete(
