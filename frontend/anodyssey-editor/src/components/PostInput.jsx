@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import PropTypes from "prop-types";
 import blogService from "../services/blog";
+import MDEditor from "@uiw/react-md-editor";
 
 const PostInput = ({ handleClick, toUpdate }) => {
   const [formData, setFormData] = useState({
@@ -50,6 +51,11 @@ const PostInput = ({ handleClick, toUpdate }) => {
     }));
   };
 
+  // Callback to handle changes in the editor content
+  const handleEditorChange = (content) => {
+    setFormData((prevData) => ({ ...prevData, body: content }));
+  };
+
   return (
     <>
       <h1>{idToUpdate ? "Edit Post" : "Create Post"}</h1>
@@ -77,13 +83,14 @@ const PostInput = ({ handleClick, toUpdate }) => {
           />
         </label>
 
-        <label>
+        <label htmlFor="body">
           Body:
-          <textarea
-            name="body"
+          <MDEditor
             value={formData.body}
-            onChange={handleChange}
-          ></textarea>
+            onChange={handleEditorChange}
+            id="body"
+            name="body"
+          />
         </label>
 
         <label>

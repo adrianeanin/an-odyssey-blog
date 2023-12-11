@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
 import blogService from "../services/blog";
+import MDEditor from "@uiw/react-md-editor";
 
 const Post = ({
   title,
@@ -11,6 +12,7 @@ const Post = ({
   author,
   tags,
   id,
+  comments,
   createdAt,
   onDelete,
   handleClick,
@@ -48,6 +50,14 @@ const Post = ({
     }
   };
 
+  const onDeleteComment = async (id, commentId) => {
+    try {
+      await blogService.removeComment(id, commentId);
+    } catch (error) {
+      console.error("Error deleting comment:", error);
+    }
+  };
+
   return (
     <>
       {!isEditing && (
@@ -55,13 +65,31 @@ const Post = ({
           <hr />
           <h2>{title}</h2>
           <h4>{subTitle}</h4>
-          <p>{body}</p>
+
+          <MDEditor.Markdown source={body} style={{ whiteSpace: "pre-wrap" }} />
+
           <blockquote>{quote}</blockquote>
           <p>{isPostPublished ? "Published" : "Not Published"}</p>
           <p>{author}</p>
           <ul>
             {tags.map((tag, index) => (
               <li key={index}>{tag}</li>
+            ))}
+          </ul>
+          <ul>
+            {comments.map((comment, index) => (
+              <li key={index}>
+                <strong>{comment.name}: </strong>
+                {comment.text}
+                <button
+                  onClick={() => {
+                    onDeleteComment(id, comment._id);
+                    handleSubmit();
+                  }}
+                >
+                  Delete
+                </button>
+              </li>
             ))}
           </ul>
           <p>{formattedDate}</p>
@@ -109,6 +137,12 @@ Post.propTypes = {
   onDelete: PropTypes.func.isRequired,
   onEdit: PropTypes.func,
   tags: PropTypes.arrayOf(PropTypes.string).isRequired,
+  comments: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      text: PropTypes.string.isRequired,
+    })
+  ),
 };
 
 export default Post;

@@ -101,6 +101,21 @@ const remove = async (id) => {
   }
 };
 
+const removeComment = async (id, commentId) => {
+  try {
+    const config = {
+      headers: { Authorization: token },
+    };
+    const response = await axios.delete(
+      `${baseUrl}/posts/${id}/comments/${commentId}`,
+      config
+    );
+    return response.data;
+  } catch (error) {
+    throw error.response;
+  }
+};
+
 export default {
   getAllPosts,
   getPost,
@@ -109,5 +124,6 @@ export default {
   update,
   togglePublish,
   remove,
+  removeComment,
   setToken,
 };
