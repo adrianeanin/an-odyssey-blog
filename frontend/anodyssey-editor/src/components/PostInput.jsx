@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import PropTypes from "prop-types";
 import blogService from "../services/blog";
 import MDEditor from "@uiw/react-md-editor";
@@ -9,6 +9,9 @@ const PostInput = ({ handleClick, toUpdate }) => {
     subTitle: "",
     body: "",
     quote: "",
+    quoteAuthor: "",
+    primaryImage: { image: "", altText: "" },
+    cite: "",
     isPublished: false,
     tags: [],
   });
@@ -18,6 +21,8 @@ const PostInput = ({ handleClick, toUpdate }) => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+
+    console.log("Form Data:", formData);
 
     if (idToUpdate) {
       const nonEmptyFields = Object.keys(formData).reduce((acc, key) => {
@@ -37,6 +42,9 @@ const PostInput = ({ handleClick, toUpdate }) => {
       subTitle: "",
       body: "",
       quote: "",
+      quoteAuthor: "",
+      primaryImage: { image: "", altText: "" },
+      cite: "",
       isPublished: false,
       tags: [],
     });
@@ -54,6 +62,19 @@ const PostInput = ({ handleClick, toUpdate }) => {
   // Callback to handle changes in the editor content
   const handleEditorChange = (content) => {
     setFormData((prevData) => ({ ...prevData, body: content }));
+  };
+
+  const handleImageChange = (e, imageType) => {
+    const { name, value } = e.target;
+
+    setFormData((prevData) => ({
+      ...prevData,
+
+      [`${imageType}Image`]: {
+        ...prevData[`${imageType}Image`],
+        [name]: value,
+      },
+    }));
   };
 
   return (
@@ -104,12 +125,52 @@ const PostInput = ({ handleClick, toUpdate }) => {
         </label>
 
         <label>
+          QuoteAuthor:
+          <input
+            type="text"
+            name="quoteAuthor"
+            value={formData.quoteAuthor}
+            onChange={handleChange}
+          />
+        </label>
+
+        <label>
+          Cite:
+          <input
+            type="text"
+            name="cite"
+            value={formData.cite}
+            onChange={handleChange}
+          />
+        </label>
+
+        <label>
           Is Published:
           <input
             type="checkbox"
             name="isPublished"
             checked={formData.isPublished}
             onChange={handleChange}
+          />
+        </label>
+
+        <label>
+          Primary Image URL:
+          <input
+            type="text"
+            name="image"
+            value={formData.primaryImage.image}
+            onChange={(e) => handleImageChange(e, "primary")}
+          />
+        </label>
+
+        <label>
+          Primary Image Alt Text:
+          <input
+            type="text"
+            name="altText"
+            value={formData.primaryImage.altText}
+            onChange={(e) => handleImageChange(e, "primary")}
           />
         </label>
 

@@ -8,8 +8,11 @@ const Post = ({
   subTitle,
   body,
   quote,
+  quoteAuthor,
+  cite,
   isPublished,
   author,
+  primaryImage,
   tags,
   id,
   comments,
@@ -66,11 +69,27 @@ const Post = ({
           <h2>{title}</h2>
           <h4>{subTitle}</h4>
 
+          <img
+            src={primaryImage.image}
+            alt={primaryImage.altText}
+            loading="lazy"
+          />
+
           <MDEditor.Markdown source={body} style={{ whiteSpace: "pre-wrap" }} />
 
-          <blockquote>{quote}</blockquote>
           <p>{isPostPublished ? "Published" : "Not Published"}</p>
           <p>{author}</p>
+
+          <div>
+            <blockquote>
+              <p>{quote}</p>
+            </blockquote>
+
+            <figcaption>
+              &ndash; {quoteAuthor}, <cite>{cite}</cite>
+            </figcaption>
+          </div>
+
           <ul>
             {tags.map((tag, index) => (
               <li key={index}>{tag}</li>
@@ -126,7 +145,9 @@ Post.propTypes = {
   title: PropTypes.string.isRequired,
   subTitle: PropTypes.string.isRequired,
   body: PropTypes.string.isRequired,
-  quote: PropTypes.string.isRequired,
+  quote: PropTypes.string,
+  quoteAuthor: PropTypes.string,
+  cite: PropTypes.string,
   isPublished: PropTypes.bool.isRequired,
   isEditing: PropTypes.bool.isRequired,
   author: PropTypes.string.isRequired,
@@ -134,6 +155,7 @@ Post.propTypes = {
   id: PropTypes.string.isRequired,
   handleClick: PropTypes.object.isRequired,
   setEdit: PropTypes.object.isRequired,
+  primaryImage: PropTypes.object,
   onDelete: PropTypes.func.isRequired,
   onEdit: PropTypes.func,
   tags: PropTypes.arrayOf(PropTypes.string).isRequired,
