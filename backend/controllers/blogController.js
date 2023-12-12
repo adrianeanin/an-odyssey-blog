@@ -38,7 +38,8 @@ const createPost = [
       res.status(400).json({ errors: errors.array() });
       return;
     }
-    const { title, subTitle, body, quote, tags, isPublished } = req.body;
+    const { title, subTitle, body, quote, quoteAuthor, tags, isPublished } =
+      req.body;
     const user = req.user;
     const author = user.name;
 

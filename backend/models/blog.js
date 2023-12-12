@@ -13,6 +13,9 @@ const blogSchema = new Schema(
     quote: {
       type: String,
     },
+    quoteAuthor: {
+      type: String,
+    },
     isPublished: {
       type: Boolean,
       default: false,
