@@ -23,6 +23,10 @@ const blogSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    primaryImage: {
+      image: { type: String },
+      altText: { type: String },
+    },
     tags: [{ type: String }],
     user: {
       type: Schema.Types.ObjectId,

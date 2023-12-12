@@ -45,6 +45,7 @@ const createPost = [
       quote,
       quoteAuthor,
       cite,
+      primaryImage,
       tags,
       isPublished,
     } = req.body;
@@ -58,6 +59,7 @@ const createPost = [
       quote,
       quoteAuthor,
       cite,
+      primaryImage,
       isPublished,
       tags,
       author,
