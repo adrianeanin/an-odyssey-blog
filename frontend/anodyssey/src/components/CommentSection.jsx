@@ -1,10 +1,13 @@
 import CommentInput from "./CommentInput";
 import PropTypes from "prop-types";
+import { useContext } from "react";
+import { BlogContext } from "../BlogContext";
 
 const CommentSection = ({ blogId, comments }) => {
+  const { updateBlogs } = useContext(BlogContext);
+
   const handleCommentSubmit = (commentData) => {
-    console.log("Submitted comment:", commentData);
-    // Todo: Post to db
+    updateBlogs(blogId, commentData);
   };
 
   return (
@@ -33,6 +36,7 @@ CommentSection.propTypes = {
       text: PropTypes.string,
     })
   ),
+  onSubmit: PropTypes.func,
 };
 
 export default CommentSection;

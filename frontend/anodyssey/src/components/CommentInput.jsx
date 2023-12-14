@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 
 const CommentInput = ({ onSubmit }) => {
   const [name, setName] = useState("");
@@ -37,6 +38,10 @@ const CommentInput = ({ onSubmit }) => {
       </div>
     </form>
   );
+};
+
+CommentInput.propTypes = {
+  onSubmit: PropTypes.func,
 };
 
 export default CommentInput;

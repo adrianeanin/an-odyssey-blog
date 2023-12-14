@@ -43,7 +43,33 @@ export const BlogProvider = ({ children }) => {
     fetchBlogs();
   }, []);
 
-  return <BlogContext.Provider value={blogs}>{children}</BlogContext.Provider>;
+  const updateBlogs = async (id, newComment) => {
+    try {
+      await blogService.addComment(id, newComment);
+
+      setBlogs((prevBlogs) => {
+        const updatedBlogs = { ...prevBlogs };
+
+        for (const category in updatedBlogs) {
+          updatedBlogs[category] = updatedBlogs[category].map((blog) =>
+            blog.id === id
+              ? { ...blog, comments: [...blog.comments, newComment] }
+              : blog
+          );
+        }
+
+        return updatedBlogs;
+      });
+    } catch (error) {
+      console.error("Error updating blogs with new comment:", error);
+    }
+  };
+
+  return (
+    <BlogContext.Provider value={{ ...blogs, updateBlogs }}>
+      {children}
+    </BlogContext.Provider>
+  );
 };
 
 BlogProvider.propTypes = {
