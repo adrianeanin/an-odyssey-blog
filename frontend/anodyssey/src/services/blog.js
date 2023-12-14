@@ -1,12 +1,6 @@
 import axios from "axios";
 const baseUrl = "http://localhost:3000/api/blog";
 
-let token = null;
-
-const setToken = (newToken) => {
-  token = `Bearer ${newToken}`;
-};
-
 const getPublishedPosts = async () => {
   try {
     const request = axios.get(`${baseUrl}/published-posts`);
@@ -42,6 +36,5 @@ const addComment = async (id, newObject) => {
 export default {
   getPost,
   getPublishedPosts,
-  setToken,
   addComment,
 };

@@ -59,7 +59,6 @@ const PostInput = ({ handleClick, toUpdate }) => {
     }));
   };
 
-  // Callback to handle changes in the editor content
   const handleEditorChange = (content) => {
     setFormData((prevData) => ({ ...prevData, body: content }));
   };

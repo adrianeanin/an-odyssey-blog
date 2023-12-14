@@ -11,7 +11,6 @@ const Post = ({
   id,
   cite,
   primaryImage,
-  category,
   tags,
   comments,
 }) => {
@@ -22,7 +21,7 @@ const Post = ({
       <article className="blog">
         <h1 className="blog-title">{title}</h1>
         <span className="blog-date">
-          <p>{formattedDate}</p> &bull; <p>{category}</p>
+          <p>{formattedDate}</p> &bull;
         </span>
 
         {quote ? (
