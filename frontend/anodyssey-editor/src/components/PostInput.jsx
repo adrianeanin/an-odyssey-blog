@@ -22,15 +22,27 @@ const PostInput = ({ handleClick, toUpdate }) => {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
-    console.log("Form Data:", formData);
-
     if (idToUpdate) {
-      const nonEmptyFields = Object.keys(formData).reduce((acc, key) => {
-        if (formData[key] !== "") {
-          acc[key] = formData[key];
-        }
-        return acc;
-      }, {});
+      const nonEmptyFields = {};
+
+      const processNestedObjects = (obj, target) => {
+        Object.entries(obj).forEach(([key, value]) => {
+          if (typeof value === "object" && !Array.isArray(value)) {
+            // process nested objects (primaryImage)
+            const nestedNonEmptyFields = {};
+            processNestedObjects(value, nestedNonEmptyFields);
+            if (Object.keys(nestedNonEmptyFields).length > 0) {
+              target[key] = nestedNonEmptyFields;
+            }
+          } else if (value !== "" && !Array.isArray(value)) {
+            target[key] = value;
+          } else if (Array.isArray(value) && value.length > 0) {
+            target[key] = value;
+          }
+        });
+      };
+
+      processNestedObjects(formData, nonEmptyFields);
 
       handleEdit(nonEmptyFields);
     } else {
@@ -178,7 +190,7 @@ const PostInput = ({ handleClick, toUpdate }) => {
           <input
             type="text"
             name="tags"
-            value={formData.tags.join(", ")}
+            value={formData.tags.join(",")}
             onChange={(e) => {
               const tagsArray = e.target.value
                 .split(",")
