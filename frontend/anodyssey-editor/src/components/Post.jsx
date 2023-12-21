@@ -69,11 +69,13 @@ const Post = ({
           <h2>{title}</h2>
           <h4>{subTitle}</h4>
 
-          <img
-            src={primaryImage.image}
-            alt={primaryImage.altText}
-            loading="lazy"
-          />
+          {primaryImage && (
+            <img
+              src={primaryImage.image}
+              alt={primaryImage.altText}
+              loading="lazy"
+            />
+          )}
 
           <MDEditor.Markdown source={body} style={{ whiteSpace: "pre-wrap" }} />
 
