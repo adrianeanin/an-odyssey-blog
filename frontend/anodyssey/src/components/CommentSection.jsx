@@ -1,7 +1,7 @@
 import CommentInput from "./CommentInput";
 import PropTypes from "prop-types";
 import { useContext } from "react";
-import { BlogContext } from "../BlogContext";
+import { BlogContext } from "../context/BlogContext";
 
 const CommentSection = ({ blogId, comments }) => {
   const { updateBlogs } = useContext(BlogContext);

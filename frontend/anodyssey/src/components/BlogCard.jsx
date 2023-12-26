@@ -1,7 +1,11 @@
 import PropTypes from "prop-types";
 
 const BlogCard = ({ title, subTitle, createdAt, primaryImage }) => {
-  const formattedDate = new Date(createdAt).toLocaleDateString("en-GB");
+  const formattedDate = new Date(createdAt).toLocaleDateString("en-GB", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
 
   return (
     <>
@@ -9,6 +13,7 @@ const BlogCard = ({ title, subTitle, createdAt, primaryImage }) => {
         <div className="card-container-content">
           <p>{formattedDate}</p>
           <h3>{title}</h3>
+
           <p>{subTitle}</p>
         </div>
 

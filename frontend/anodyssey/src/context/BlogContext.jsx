@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import blogService from "./services/blog";
+import blogService from "../services/blog";
 
 export const BlogContext = createContext({
   inspiring: [],
@@ -19,6 +19,8 @@ export const BlogProvider = ({ children }) => {
     const fetchBlogs = async () => {
       try {
         const response = await blogService.getPublishedPosts();
+
+        console.log("Response", response);
 
         const inspiringBlogs = response.filter((blog) =>
           blog.tags.map((tag) => tag.toLowerCase()).includes("inspiring")

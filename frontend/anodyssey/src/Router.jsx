@@ -5,7 +5,7 @@ import BlogList from "./pages/BlogList.jsx";
 import Post from "./components/Post.jsx";
 import Home from "./pages/Home";
 import { useContext } from "react";
-import { BlogContext } from "./BlogContext.jsx";
+import { BlogContext } from "./context/BlogContext.jsx";
 
 const Router = () => {
   const blogs = useContext(BlogContext);

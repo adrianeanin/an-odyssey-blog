@@ -68,7 +68,7 @@ Post.propTypes = {
   cite: PropTypes.string,
   createdAt: PropTypes.string.isRequired,
   id: PropTypes.string,
-  primaryImage: PropTypes.object,
+  primaryImage: PropTypes.object.isRequired,
   tags: PropTypes.arrayOf(PropTypes.string),
   comments: PropTypes.arrayOf(
     PropTypes.shape({

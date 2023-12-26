@@ -2,7 +2,7 @@ import BlogCard from "../components/BlogCard";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { useContext, useState } from "react";
-import { BlogContext } from "../BlogContext";
+import { BlogContext } from "../context/BlogContext";
 
 const BlogList = ({ title }) => {
   const blogs = useContext(BlogContext);

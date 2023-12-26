@@ -1,0 +1,274 @@
+@import "./cssReset.css";
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@400;500;600;700;800;900&display=swap");
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --text: rgb(26, 1, 1);
+    --background: rgb(255, 245, 244);
+    --white: rgb(255, 255, 255);
+    --grey-bg: #f2f4f7;
+    --primary: rgb(248, 25, 29);
+    --secondary: rgb(251, 237, 124);
+    --accent: rgb(208, 249, 68);
+
+    --linearPrimarySecondary: linear-gradient(
+      to right,
+      rgb(248, 27, 31) 5%,
+      rgb(251, 236, 126) 50%
+    );
+
+    --box-shadow: 0px 4px 70px 0px rgba(30, 40, 52, 0.08);
+
+    --radialPrimarySecondary: radial-gradient(
+      rgb(248, 27, 31),
+      rgb(251, 236, 126)
+    );
+  }
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: rgb(254, 230, 230);
+    --background: rgb(10, 1, 0);
+    --primary: rgb(228, 7, 11);
+    --secondary: rgb(129, 114, 4);
+    --accent: rgb(145, 188, 6);
+
+    --gradient: linear-gradient(
+      to right,
+      var(--primary) 5%,
+      var(--secondary) 50%,
+      var(--accent) 80%
+    );
+  }
+}
+
+:root {
+  /* Fluid type scale */
+  --step--4: clamp(0.48rem, 0.43rem + 0.25vw, 0.62rem);
+  --step--3: clamp(0.58rem, 0.54rem + 0.22vw, 0.7rem);
+  --step--2: clamp(0.69rem, 0.66rem + 0.17vw, 0.79rem);
+  --step--1: clamp(0.83rem, 0.81rem + 0.1vw, 0.89rem);
+  --step-0: clamp(1rem, 1rem + 0vw, 1rem);
+  --step-1: clamp(1.13rem, 1.23rem + -0.13vw, 1.2rem);
+  --step-2: clamp(1.27rem, 1.5rem + -0.3vw, 1.44rem);
+  --step-3: clamp(1.42rem, 1.83rem + -0.53vw, 1.73rem);
+  --step-4: clamp(1.6rem, 2.24rem + -0.82vw, 2.07rem);
+  --step-5: clamp(1.8rem, 2.73rem + -1.19vw, 2.49rem);
+
+  font-family: "Inter", sans-serif;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--secondary) var(--white);
+}
+
+body {
+  color: var(--text);
+  font-size: var(--step-0);
+}
+
+p,
+li,
+dl {
+  max-width: 65ch;
+}
+
+a {
+  display: inline-block;
+  letter-spacing: 0.05rem;
+  text-decoration: none;
+  color: var(--text);
+  transition: color 0.3s ease, transform 0.45s ease;
+}
+
+a:hover {
+  cursor: pointer;
+  transform: scale(1.01);
+}
+
+button {
+  color: var(--text);
+  text-transform: uppercase;
+  padding: 0.25rem 0.75rem;
+  cursor: pointer;
+  letter-spacing: 0.05rem;
+  transition: transform 0.45s ease;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+/* Utility */
+
+.wrapper {
+  margin: 0 auto;
+  max-width: 80%;
+  padding: 0.25rem;
+}
+
+.flow > * + * {
+  margin-top: 1em;
+}
+
+.spacer {
+  margin-top: 2rem;
+}
+
+/* Scrollbar */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--white);
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 6px;
+  border: 3px solid var(--secondary);
+}
+
+/* Header */
+
+header {
+  background-color: var(--white);
+  box-shadow: var(--box-shadow);
+}
+
+.header nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+
+.header-home {
+  font-family: "Poppins", sans-serif;
+  font-size: var(--step-2);
+  font-weight: 700;
+  color: #1e2834;
+}
+
+.header-links {
+  display: flex;
+  gap: 1em;
+}
+
+.header-links a {
+  font-size: var(--step-0);
+  font-weight: 500;
+  line-height: 1.5rem;
+}
+
+.header-links a.active {
+  background: var(--radialPrimarySecondary);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 600;
+}
+
+h1 {
+  font-family: "Poppins", sans-serif;
+  background: var(--radialPrimarySecondary);
+  color: transparent;
+  font-size: 4.75rem;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Hero */
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 60vh;
+  padding: 10em 0;
+}
+
+.hero-intro-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.hero-intro-logo {
+  font-size: 3rem;
+}
+
+/* Blog Summary */
+
+.summary {
+  background-color: var(--grey-bg);
+}
+
+.summary-list-control-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 2em;
+}
+
+.summary-list-control-title a {
+  background-color: var(--white);
+  border-radius: 10px;
+  padding: 0.5em;
+  letter-spacing: normal;
+}
+
+.summary-list-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 2em;
+}
+
+/* Blog Card */
+
+.card-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 1em;
+  gap: 1em;
+  border-radius: 10px;
+  background-color: var(--white);
+}
+
+.card-container-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+  gap: 2em;
+  text-align: left;
+}
+
+.card-container-img {
+  max-width: 40%;
+}
+
+.card-container-img img {
+  border-radius: 10px;
+}
+
+@media (max-width: 40em) {
+  .card-container {
+    flex-direction: column;
+  }
+
+  .card-container-content {
+    padding: 0;
+  }
+
+  .card-container-img {
+    max-width: 100%;
+  }
+}
