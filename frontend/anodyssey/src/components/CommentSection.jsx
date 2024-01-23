@@ -15,7 +15,7 @@ const CommentSection = ({ blogId, comments }) => {
       <div className="blog-comment-section">
         <CommentInput onSubmit={handleCommentSubmit} />
 
-        <ul className="blog-comments">
+        <ul className="blog-comments | spacer">
           {comments.map((comment, index) => (
             <li key={index}>
               <strong>{comment.name}: </strong>

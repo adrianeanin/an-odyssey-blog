@@ -6,7 +6,7 @@ const BlogListSummary = ({ title, items, categoryPath }) => {
   const recentItems = items.slice(0, 3);
 
   return (
-    <div className="summary-list-control | flow">
+    <div className="summary-list-control | flow | wrapper">
       <div className="summary-list-control-title">
         <h3>{title}</h3>
         <NavLink to={`/${categoryPath}`}>View All</NavLink>

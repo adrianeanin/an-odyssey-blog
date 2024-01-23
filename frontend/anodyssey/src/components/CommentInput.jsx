@@ -13,30 +13,40 @@ const CommentInput = ({ onSubmit }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="blog-comment-form">
-      <div>
-        <label htmlFor="commentName">Name:</label>
-        <input
-          type="text"
-          id="commentName"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-        />
-      </div>
-      <div>
-        <label htmlFor="commentText">Comment:</label>
-        <textarea
-          id="commntText"
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-          required
-        />
-      </div>
-      <div>
-        <button type="submit">Submit Comment</button>
-      </div>
-    </form>
+    <div className="form-wrapper | spacer">
+      <form onSubmit={handleSubmit} className="blog-comment-form">
+        <h2>Add a comment</h2>
+
+        <div className="form-input">
+          <label htmlFor="commentName">Name:</label>
+          <input
+            type="text"
+            id="commentName"
+            placeholder="Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+        </div>
+
+        <div className="form-input">
+          <label htmlFor="commentText">Comment:</label>
+          <textarea
+            id="commentText"
+            placeholder="Comment"
+            maxLength={150}
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <button type="submit" className="submit-btn">
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
   );
 };
 

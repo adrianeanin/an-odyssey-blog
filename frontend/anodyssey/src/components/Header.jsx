@@ -35,9 +35,8 @@ const Header = () => {
             >
               Tutorials
             </NavLink>
-
-            <a href="#">Photo Odyssey</a>
           </div>
+          <a href="#">Photo Odyssey</a>
         </nav>
       </div>
     </header>

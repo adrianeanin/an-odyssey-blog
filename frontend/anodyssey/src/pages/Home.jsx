@@ -9,14 +9,18 @@ const Home = () => {
 
   return (
     <>
-      <article className="hero | wrapper">
-        <p>👋 Hello World, Welcome to</p>
-        <div className="hero-intro-wrapper">
-          <h1>Anodyssey</h1>
-          <div className="hero-intro-logo">🚀</div>
-        </div>
-        <p>A not so developer blog, hope you love the journey.</p>
-      </article>
+      <section>
+        <article className="hero | wrapper">
+          <div className="hero-text">
+            <p>👋 Hello World, Welcome to</p>
+            <div className="hero-intro-wrapper">
+              <h1>Anodyssey</h1>
+              <div className="hero-intro-logo">🚀</div>
+            </div>
+            <p>A not so developer blog, hope you love the journey.</p>
+          </div>
+        </article>
+      </section>
 
       <section className="summary">
         <div className="wrapper">
