@@ -12,6 +12,8 @@ const BlogList = ({ title }) => {
   const [expanded, setExpanded] = useState(false);
   const initialBlogs = allBlogs.slice(0, displayedBlogs);
 
+  console.log(initialBlogs);
+
   const handleExpand = () => {
     setExpanded(!expanded);
     setDisplayedBlogs(6);
@@ -19,26 +21,45 @@ const BlogList = ({ title }) => {
 
   return (
     <>
-      <div className="blog-list">
-        <h2>{title}</h2>
-        <p>Some cool subtext</p>
+      <section className="blog-list">
+        <div className="">
+          <div className="blog-list-text">
+            <h1>{title}</h1>
 
-        <div className="blog-list-view">
-          {expanded
-            ? allBlogs.map((blog, index) => <BlogCard key={index} {...blog} />)
-            : initialBlogs.map((blog, index) => (
-                <Link to={`/blog/${blog.id}`} key={index}>
-                  <BlogCard {...blog} />
-                </Link>
-              ))}
+            <div className="blog-list-subtext">
+              {title === "Tech Blogs" ? (
+                <p>Traversing the galaxy of code.</p>
+              ) : title === "Inspiring Blogs" ? (
+                <p>A journey through thoughts.</p>
+              ) : title === "Tutorial Blogs" ? (
+                <p>A quest of life-long learning.</p>
+              ) : (
+                ""
+              )}
+            </div>
+          </div>
+
+          <div className="blog-list-view | wrapper">
+            {expanded
+              ? allBlogs.map((blog, index) => (
+                  <Link to={`/blog/${blog.id}`} key={index}>
+                    <BlogCard key={index} {...blog} />
+                  </Link>
+                ))
+              : initialBlogs.map((blog, index) => (
+                  <Link to={`/blog/${blog.id}`} key={index}>
+                    <BlogCard key={index} {...blog} />
+                  </Link>
+                ))}
+
+            {allBlogs.length > displayedBlogs && (
+              <button onClick={handleExpand}>
+                {expanded ? "Collapse" : "More Articles"}
+              </button>
+            )}
+          </div>
         </div>
-
-        {allBlogs.length > displayedBlogs && (
-          <button onClick={handleExpand}>
-            {expanded ? "Collapse" : "More Articles"}
-          </button>
-        )}
-      </div>
+      </section>
     </>
   );
 };

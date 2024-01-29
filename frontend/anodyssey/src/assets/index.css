@@ -56,6 +56,7 @@
 body {
   color: var(--text);
   font-size: var(--step-0);
+  background-color: var(--background);
 }
 
 p,
@@ -69,7 +70,7 @@ a {
   letter-spacing: 0.05rem;
   text-decoration: none;
   color: var(--text);
-  transition: color 0.3s ease, transform 0.45s ease;
+  transition: color 0.3s ease-in-out, transform 0.45s ease;
 }
 
 a:hover {
@@ -79,13 +80,18 @@ a:hover {
 
 button {
   color: var(--text);
-  padding: 0.25rem 0.75rem;
+  padding: 0.75rem 0.875rem;
+  border-radius: 10px;
+  border: 1px solid var(--grey-bg);
+  background-color: var(--background);
   cursor: pointer;
-  transition: transform 0.45s ease;
+  transition: transform 0.45s ease-in-out, background-color 0.45s ease-in-out;
 }
 
 button:hover {
   transform: scale(1.05);
+  background-color: var(--text);
+  color: var(--background);
 }
 
 /* Utility */
@@ -240,6 +246,11 @@ section.summary {
   letter-spacing: normal;
 }
 
+.summary-list-control-title a:hover {
+  background-color: var(--text);
+  color: var(--background);
+}
+
 .summary-list-view {
   display: flex;
   flex-direction: column;
@@ -279,12 +290,6 @@ section.summary {
 }
 
 /* Blog Post */
-.blog {
-  /* display: flex; */
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
 
 .blog-title {
   text-align: center;
@@ -296,15 +301,12 @@ section.summary {
 
 .blog-primary-image {
   text-align: center;
-  /* margin: 0 auto; */
   display: flex;
   justify-content: center;
-  /* border: 2px solid red; */
   margin-bottom: 1rem;
 }
 
 .blog-primary-image img {
-  /* margin-top: 2rem; */
   border-radius: 10px;
   width: 68.75rem;
   height: 36.25rem;
@@ -315,7 +317,6 @@ section.summary {
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  /* font-family: "Inter", sans-serif; */
   font-size: var(--step-1);
   background-color: var(--background);
   color: var(--text);
@@ -439,6 +440,51 @@ textarea::placeholder {
 .footer-social-icons {
   display: flex;
   gap: 1rem;
+}
+
+/* BlogList */
+
+.blog-list {
+}
+
+.blog-list-text {
+  text-align: center;
+  height: 40vh;
+  padding: 1rem;
+  display: grid;
+  place-content: center;
+}
+
+.blog-list-subtext {
+  display: grid;
+  place-content: center;
+}
+
+.blog-list-subtext p {
+  text-align: center;
+}
+
+.blog-list-view {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+  background-color: var(--grey-bg);
+  box-shadow: 0 0 0 10vmax var(--grey-bg);
+  clip-path: inset(0 -10vmax);
+}
+
+.blog-list-view a {
+  width: 80%;
+}
+
+.blog-list-view a:first-child {
+  margin-top: 2rem;
+}
+
+.blog-list-view button {
+  margin-bottom: 2rem;
 }
 
 @media (max-width: 40em) {
