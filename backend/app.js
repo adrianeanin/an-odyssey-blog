@@ -3,6 +3,7 @@ require("express-async-errors");
 require("dotenv").config();
 const app = express();
 const cors = require("cors");
+const compression = require("compression");
 const { default: mongoose } = require("mongoose");
 const config = require("./utils/config");
 const logger = require("./utils/logger");
@@ -26,8 +27,17 @@ mongoose
   });
 
 // Middleware Connections
+const limiter = RateLimit({
+  windowMs: 1 * 60 * 1000, // 1 minute
+  max: 20,
+});
+
 app.use(cors());
 app.use(express.json());
+app.use(helmet());
+app.use(compression());
+app.use(limiter);
+app.disable("x-powered-by"); // Extra layer of security to reduce server fingerprinting
 app.use(middleware.requestLogger);
 
 // Routes
