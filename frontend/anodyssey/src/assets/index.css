@@ -179,7 +179,8 @@ header {
   gap: 1em;
 }
 
-.header-links a {
+.header-links a,
+nav a:last-child {
   font-size: var(--step-0);
   font-weight: 500;
   line-height: 1.5rem;
@@ -223,6 +224,23 @@ h1 {
 
 .hero-intro-logo {
   font-size: 3rem;
+}
+
+.hero-text {
+  text-align: center;
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-content: center;
+}
+
+.hero-text p:first-child {
+  /* border: 2px solid red; */
+  width: fit-content;
+  justify-self: center;
+  padding: 0.625rem 1rem;
+  border-radius: 6.25rem;
+  background-color: var(--grey-bg);
 }
 
 /* Blog Summary */
@@ -444,9 +462,6 @@ textarea::placeholder {
 
 /* BlogList */
 
-.blog-list {
-}
-
 .blog-list-text {
   text-align: center;
   height: 40vh;
@@ -485,6 +500,26 @@ textarea::placeholder {
 
 .blog-list-view button {
   margin-bottom: 2rem;
+}
+
+/* Error Page */
+
+.error-page {
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+.error-page h1 {
+  font-size: 3rem;
+}
+
+.error-page a {
+  text-decoration: underline;
 }
 
 @media (max-width: 40em) {
