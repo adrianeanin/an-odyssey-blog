@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import DarkThemeToggle from "./DarkThemeToggle";
 
 const Header = () => {
   return (
@@ -36,7 +37,11 @@ const Header = () => {
               Tutorials
             </NavLink>
           </div>
-          <a href="#">Photo Odyssey</a>
+
+          <div className="header-links-right">
+            <a href="#">Photo Odyssey</a>
+            <DarkThemeToggle />
+          </div>
         </nav>
       </div>
     </header>
