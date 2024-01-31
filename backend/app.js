@@ -4,6 +4,8 @@ require("dotenv").config();
 const app = express();
 const cors = require("cors");
 const compression = require("compression");
+const RateLimit = require("express-rate-limit");
+const helmet = require("helmet");
 const { default: mongoose } = require("mongoose");
 const config = require("./utils/config");
 const logger = require("./utils/logger");
@@ -38,7 +40,6 @@ app.use(helmet());
 app.use(compression());
 app.use(limiter);
 app.disable("x-powered-by"); // Extra layer of security to reduce server fingerprinting
-app.use(middleware.requestLogger);
 
 // Routes
 app.use("/api/blog", blogRouter, commentRouter);
