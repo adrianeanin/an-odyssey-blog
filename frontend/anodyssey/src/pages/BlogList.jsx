@@ -22,7 +22,7 @@ const BlogList = ({ title }) => {
   return (
     <>
       <section className="blog-list">
-        <div className="">
+        <div>
           <div className="blog-list-text">
             <h1>{title}</h1>
 

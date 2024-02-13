@@ -14,7 +14,7 @@ const BlogCard = ({ title, subTitle, createdAt, primaryImage }) => {
           <p>{formattedDate}</p>
           <h3>{title}</h3>
 
-          <p>{subTitle}</p>
+          <p className="subtitle">{subTitle}</p>
         </div>
 
         {primaryImage && (

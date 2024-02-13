@@ -10,7 +10,7 @@ const Post = ({ title, body, createdAt, id, primaryImage, tags, comments }) => {
       <section>
         <article className="blog | wrapper">
           <div className="blog-title">
-            <h1 className="blog-text">{title}</h1>
+            <h1 className="blog-text | spacer">{title}</h1>
             <p className="blog-date">{formattedDate}</p>
           </div>
 

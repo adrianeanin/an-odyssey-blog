@@ -1,5 +1,5 @@
 import axios from "axios";
-const baseUrl = "http://localhost:3000/api/blog";
+const baseUrl = "https://powerful-tick-underwear.cyclic.app/api/blog";
 
 const getPublishedPosts = async () => {
   try {
