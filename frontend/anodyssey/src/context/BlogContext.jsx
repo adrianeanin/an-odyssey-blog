@@ -20,8 +20,6 @@ export const BlogProvider = ({ children }) => {
       try {
         const response = await blogService.getPublishedPosts();
 
-        console.log("Response", response);
-
         const inspiringBlogs = response.filter((blog) =>
           blog.tags.map((tag) => tag.toLowerCase()).includes("inspiring")
         );

@@ -16,8 +16,6 @@ const Router = () => {
     element: <Post key={blog.id} {...blog} />,
   }));
 
-  console.log("ROUTES", ...blogRoutes);
-
   const router = createBrowserRouter([
     {
       path: "/",
@@ -38,6 +36,7 @@ const Router = () => {
           element: <BlogList title={"Tutorial Blogs"} />,
         },
         ...blogRoutes,
+        { path: "/blog/:id", element: <Home /> },
       ],
     },
   ]);

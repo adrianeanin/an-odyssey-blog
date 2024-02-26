@@ -64,7 +64,7 @@ const Header = () => {
           </div>
 
           <div className="header-links-right">
-            <a href="#" id="photo-odyssey">
+            <a href="#" id="photo-odyssey" aria-hidden="true">
               Photo Odyssey
             </a>
             <DarkThemeToggle />

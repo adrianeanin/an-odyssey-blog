@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import placeholderImg from "../assets/placeholder.jpg";
 
 const BlogCard = ({ title, subTitle, createdAt, primaryImage }) => {
   const formattedDate = new Date(createdAt).toLocaleDateString("en-GB", {
@@ -21,7 +22,9 @@ const BlogCard = ({ title, subTitle, createdAt, primaryImage }) => {
           {primaryImage ? (
             <img src={primaryImage.image} alt={primaryImage.altText} />
           ) : (
-            <div className="placeholder-img"></div>
+            <div className="placeholder-img">
+              <img src={placeholderImg} alt="a rocket in space" />
+            </div>
           )}
         </div>
       </div>

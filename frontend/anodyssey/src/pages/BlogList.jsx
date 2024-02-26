@@ -12,8 +12,6 @@ const BlogList = ({ title }) => {
   const [expanded, setExpanded] = useState(false);
   const initialBlogs = allBlogs.slice(0, displayedBlogs);
 
-  console.log(initialBlogs);
-
   const handleExpand = () => {
     setExpanded(!expanded);
     setDisplayedBlogs(6);
