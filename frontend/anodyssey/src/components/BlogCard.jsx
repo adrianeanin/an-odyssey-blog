@@ -17,11 +17,13 @@ const BlogCard = ({ title, subTitle, createdAt, primaryImage }) => {
           <p className="subtitle">{subTitle}</p>
         </div>
 
-        {primaryImage && (
-          <div className="card-container-img">
+        <div className="card-container-img">
+          {primaryImage ? (
             <img src={primaryImage.image} alt={primaryImage.altText} />
-          </div>
-        )}
+          ) : (
+            <div className="placeholder-img"></div>
+          )}
+        </div>
       </div>
     </>
   );

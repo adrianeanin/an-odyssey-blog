@@ -39,3 +39,10 @@
 .theme-toggle:focus {
   outline: 1px solid var(--icon-fill);
 }
+
+@media (max-width: 40em) {
+  .theme-toggle {
+    --size: 2rem;
+    padding: 0.2rem;
+  }
+}

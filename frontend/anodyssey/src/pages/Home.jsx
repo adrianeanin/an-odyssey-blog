@@ -5,8 +5,6 @@ import { useContext } from "react";
 const Home = () => {
   const { inspiring, tech, tutorials } = useContext(BlogContext);
 
-  console.log("Home inspiring", inspiring);
-
   return (
     <>
       <section>

@@ -5,7 +5,7 @@ const Footer = () => {
     <>
       <footer className="footer">
         <div className="wrapper | footer-inner">
-          <NavLink to="/" className="footer-brand">
+          <NavLink to="/" className="footer-brand" aria-label="Anodyssey home">
             Anodyssey 🚀
           </NavLink>
 
