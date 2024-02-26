@@ -6,11 +6,19 @@ import { BlogContext } from "../context/BlogContext";
 
 const BlogList = ({ title }) => {
   const blogs = useContext(BlogContext);
-  const allBlogs = Object.values(blogs).flat();
+
+  const filteredBlogs =
+    title === "Tech Blogs"
+      ? blogs.tech
+      : title === "Inspiring Blogs"
+      ? blogs.inspiring
+      : title === "Tutorial Blogs"
+      ? blogs.tutorials
+      : [];
 
   const [displayedBlogs, setDisplayedBlogs] = useState(6);
   const [expanded, setExpanded] = useState(false);
-  const initialBlogs = allBlogs.slice(0, displayedBlogs);
+  const initialBlogs = filteredBlogs.slice(0, displayedBlogs);
 
   const handleExpand = () => {
     setExpanded(!expanded);
@@ -39,7 +47,7 @@ const BlogList = ({ title }) => {
 
           <div className="blog-list-view | wrapper">
             {expanded
-              ? allBlogs.map((blog, index) => (
+              ? filteredBlogs.map((blog, index) => (
                   <Link to={`/blog/${blog.id}`} key={index}>
                     <BlogCard key={index} {...blog} />
                   </Link>
@@ -50,7 +58,7 @@ const BlogList = ({ title }) => {
                   </Link>
                 ))}
 
-            {allBlogs.length > displayedBlogs && (
+            {displayedBlogs && (
               <button onClick={handleExpand}>
                 {expanded ? "Collapse" : "More Articles"}
               </button>
