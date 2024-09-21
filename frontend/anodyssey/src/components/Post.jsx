@@ -40,11 +40,11 @@ const Post = ({ title, body, createdAt, id, primaryImage, tags, comments }) => {
 };
 
 Post.propTypes = {
-  title: PropTypes.string.isRequired,
-  body: PropTypes.string.isRequired,
-  createdAt: PropTypes.string.isRequired,
+  title: PropTypes.string,
+  body: PropTypes.string,
+  createdAt: PropTypes.string,
   id: PropTypes.string,
-  primaryImage: PropTypes.object.isRequired,
+  primaryImage: PropTypes.object,
   tags: PropTypes.arrayOf(PropTypes.string),
   comments: PropTypes.arrayOf(
     PropTypes.shape({

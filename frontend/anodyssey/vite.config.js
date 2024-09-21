@@ -7,12 +7,12 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "http://localhost:3000",
+        target: "https://anodyssey-api.fly.dev",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ""),
       },
     },
-    port: 5173,
+    port: 5174,
     host: "0.0.0.0", // Allow connections from all hosts
   },
 });
