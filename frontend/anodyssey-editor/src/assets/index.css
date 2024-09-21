@@ -1,0 +1,142 @@
+@import "./cssReset.css";
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@400;500;600;700;800;900&display=swap");
+
+body {
+  --text: rgb(26, 1, 1);
+  --background: rgb(255, 255, 255);
+  --dark-bg: rgb(242, 244, 247);
+  --brand: rgb(30, 40, 52);
+  --primary: rgb(248, 25, 29);
+  --secondary: rgb(251, 237, 124);
+
+  --box-shadow: 0px 4px 70px 0px rgba(30, 40, 52, 0.08);
+  --radialPrimarySecondary: radial-gradient(var(--primary), var(--secondary));
+}
+
+:root {
+  /* Fluid type scale */
+  --step--4: clamp(0.48rem, 0.43rem + 0.25vw, 0.62rem);
+  --step--3: clamp(0.58rem, 0.54rem + 0.22vw, 0.7rem);
+  --step--2: clamp(0.69rem, 0.66rem + 0.17vw, 0.79rem);
+  --step--1: clamp(0.83rem, 0.81rem + 0.1vw, 0.89rem);
+  --step-0: clamp(1rem, 1rem + 0vw, 1rem);
+  --step-1: clamp(1.13rem, 1.23rem + -0.13vw, 1.2rem);
+  --step-2: clamp(1.27rem, 1.5rem + -0.3vw, 1.44rem);
+  --step-3: clamp(1.42rem, 1.83rem + -0.53vw, 1.73rem);
+  --step-4: clamp(1.6rem, 2.24rem + -0.82vw, 2.07rem);
+  --step-5: clamp(1.8rem, 2.73rem + -1.19vw, 2.49rem);
+
+  font-family: "Inter", sans-serif;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: rgb(251, 237, 124) rgb(22, 15, 15);
+}
+
+body {
+  color: var(--text);
+  font-size: var(--step-0);
+  background-color: var(--background);
+}
+
+p,
+li,
+dl {
+  max-width: 65ch;
+}
+
+a {
+  display: inline-block;
+  letter-spacing: 0.05rem;
+  text-decoration: none;
+  color: var(--text);
+  transition: color 0.3s ease-in-out, transform 0.45s ease;
+}
+
+a:hover {
+  cursor: pointer;
+  transform: scale(1.01);
+}
+
+button {
+  color: var(--text);
+  padding: 0.75rem 0.875rem;
+  border-radius: 10px;
+  border: 1px solid var(--dark-bg);
+  background-color: var(--background);
+  cursor: pointer;
+  transition: transform 0.45s ease-in-out, background-color 0.45s ease-in-out;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+button:not(.theme-toggle):hover {
+  background-color: var(--text);
+  color: var(--background);
+}
+
+.form-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.form {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  max-width: 100%;
+  width: 300px; 
+  padding: 20px; 
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Scrollbar */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgb(129, 114, 4);
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 6px;
+  border: 3px solid rgb(129, 114, 4);
+}
+
+/* Header */
+
+header {
+  background-color: var(--background);
+  box-shadow: var(--box-shadow);
+  text-align: center;
+}
+
+h1 {
+  font-family: "Poppins", sans-serif;
+  background: var(--radialPrimarySecondary);
+  color: transparent;
+  font-size: 3.75rem;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 1em;
+  border-radius: 10px;
+  border: none;
+  background-color: var(--dark-bg);
+}
+
+input::placeholder,
+textarea::placeholder {
+  padding: 0.5rem;
+}

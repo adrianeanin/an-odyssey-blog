@@ -89,7 +89,7 @@ const App = () => {
   return (
     <>
       <header>
-        <h1>Anodyssey Editor</h1>
+        <h1>anodyssey editor</h1>
 
         {user && (
           <div>
