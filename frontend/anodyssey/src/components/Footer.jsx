@@ -10,11 +10,11 @@ const Footer = () => {
           </NavLink>
 
           <div className="footer-social-icons">
-            <a href="https://github.com/adriananin" aria-label="github profile">
+            <a href="https://github.com/adrianeanin" aria-label="github profile">
               <i className="devicon-github-original" />
             </a>
             <a
-              href="https://twitter.com/adriananin"
+              href="https://x.com/adrianeanin"
               aria-label="twitter(X) profile"
             >
               <svg
@@ -30,7 +30,7 @@ const Footer = () => {
               </svg>
             </a>
             <a
-              href="https://www.linkedin.com/in/adriananin/"
+              href="https://www.linkedin.com/in/adrianeanin/"
               aria-label="linkedin profile"
             >
               <i className="devicon-linkedin-plain" />
