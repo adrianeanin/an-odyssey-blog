@@ -45,18 +45,22 @@ app.disable("x-powered-by"); // Extra layer of security to reduce server fingerp
 // Routes
 app.use("/api/blog", blogRouter, commentRouter);
 app.use("/api/users", signUpRouter, loginRouter);
-
-const frontendBuildPath = path.join(__dirname, "..", "frontend", "anodyssey");
-app.use(express.static(frontendBuildPath));
-
-app.get("/*", (req, res) => {
-  console.log("Catchall route invoked:", req.url);
-  res.sendFile(path.join(frontendBuildPath, "dist/index.html"), function (err) {
-    if (err) {
-      res.status(500).send(err);
-    }
-  });
+app.get("/ping", (req, res) => {
+  console.log("Pinging anodyssey");
+  res.send("Hello there, Welcome to Anodyssey");
 });
+
+// const frontendBuildPath = path.join(__dirname, "..", "frontend", "anodyssey");
+// app.use(express.static(frontendBuildPath));
+
+// app.get("/*", (req, res) => {
+//   console.log("Catchall route invoked:", req.url);
+//   res.sendFile(path.join(frontendBuildPath, "dist/index.html"), function (err) {
+//     if (err) {
+//       res.status(500).send(err);
+//     }
+//   });
+// });
 
 // Error handling middleware
 app.use(middleware.unknownEndpoint);
