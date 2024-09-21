@@ -50,18 +50,6 @@ app.get("/ping", (req, res) => {
   res.send("Hello there, Welcome to Anodyssey");
 });
 
-// const frontendBuildPath = path.join(__dirname, "..", "frontend", "anodyssey");
-// app.use(express.static(frontendBuildPath));
-
-// app.get("/*", (req, res) => {
-//   console.log("Catchall route invoked:", req.url);
-//   res.sendFile(path.join(frontendBuildPath, "dist/index.html"), function (err) {
-//     if (err) {
-//       res.status(500).send(err);
-//     }
-//   });
-// });
-
 // Error handling middleware
 app.use(middleware.unknownEndpoint);
 app.use(middleware.errorHandler);
