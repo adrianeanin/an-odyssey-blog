@@ -1,7 +1,9 @@
-import { useState } from "react";
-import PropTypes from "prop-types";
 import axios from "axios";
+import PropTypes from "prop-types";
 import blogService from "../services/blog";
+
+import { useState } from "react";
+import { apiUrl } from "../services/config";
 
 const Form = ({ title, onLoginSuccess, setActiveForm }) => {
   const [formData, setFormData] = useState({
@@ -26,7 +28,7 @@ const Form = ({ title, onLoginSuccess, setActiveForm }) => {
       }
 
       const response = await axios.post(
-        `http://localhost:3000/api/users/${endpoint}`,
+        `${apiUrl}/api/users/${endpoint}`,
         formData
       );
       console.log(`User ${action} successfully`);
@@ -57,6 +59,7 @@ const Form = ({ title, onLoginSuccess, setActiveForm }) => {
 
   return (
     <>
+    <div className="form-wrapper">
       <form className="form" onSubmit={handleSubmit}>
         <h1>{title}</h1>
 
@@ -96,6 +99,7 @@ const Form = ({ title, onLoginSuccess, setActiveForm }) => {
           </div>
         )}
       </form>
+    </div>
     </>
   );
 };

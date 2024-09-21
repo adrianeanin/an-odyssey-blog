@@ -1,5 +1,7 @@
 import axios from "axios";
-const baseUrl = "http://localhost:3000/api/blog";
+import { apiUrl } from "./config";
+
+const baseUrl = `${apiUrl}/api/blog`;
 
 let token = null;
 
